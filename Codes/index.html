@@ -1,0 +1,54 @@
+<html>
+<head>
+<script>
+function showUser(str) {
+  if (str=="") {
+    document.getElementById("txtHint").innerHTML="";
+    return;
+  } 
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("GET","getuser.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
+</head>
+<body>
+
+<form>
+<select name="class" onchange="showUser(this.value)">
+<option value="">Select a Class:</option>
+<option value="1">FE</option>
+<option value="2">SE</option>
+<option value="3">TE</option>
+<option value="4">BE</option>
+</select>
+<select name="dept" onchange="showUser(this.value)">
+<option value="">Select a Department:</option>
+<option value="1">IT</option>
+<option value="2">CMPN</option>
+<option value="3">EXTC</option>
+<option value="4">MECH</option>
+</select>
+<select name="division" onchange="showUser(this.value)">
+<option value="">Select a Division:</option>
+<option value="1">A</option>
+<option value="2">B</option>
+
+</select>
+
+</form>
+<br>
+<div id="txtHint"><b>Person info will be listed here.</b></div>
+
+</body>
+</html>
